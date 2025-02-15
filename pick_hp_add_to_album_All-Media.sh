@@ -6,6 +6,6 @@ echo "Running first shell script..."
 
 # Run the AppleScript
 echo "Running AppleScript..."
-osascript ./createAlbumAddPhotoDebug.scpt
+osascript ./createAlbumAddPhoto.scpt
 
 echo "Both scripts executed."

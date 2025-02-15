@@ -3,7 +3,7 @@
 # Define the database location
 # DB_PATH="$HOME/Photos Library DB/Test/database/Photos.sqlite"
 DB_PATH="/Volumes/Extreme Pro/Photos Library/All-Media.photoslibrary/database/Photos.sqlite"
-UUID_FILE="$HOME/dev/picture-maintenance/uuids.txt"
+UUID_FILE="$HOME/dev/media-organizer/uuids.txt"
 
 
 # Query SQLite for UUIDs of high rated photo/s/ 
