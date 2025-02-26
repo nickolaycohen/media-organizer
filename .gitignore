@@ -1,1 +1,4 @@
 ./face-recognition/SmartAlbumExport/*
+.DS_Store
+/__pycache__/
+/.vscode/
