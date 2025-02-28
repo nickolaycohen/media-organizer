@@ -505,3 +505,37 @@ where z_pk in
     from zgenericalbum al 
     join ZGENERICALBUM p on p.Z_PK = al.zparentfolder
     where p.ztitle = '01-High Rated Events Intake'))
+    
+    
+-- 2025-02-25 
+select count(*)
+from ZASSET za
+where za.ZOVERALLAESTHETICSCORE > 0.7
+-- total in asset table - 199,684
+-- > 0.7 -> 1,540
+
+        
+select z.ZTRASHEDSTATE, z.ZTITLE, z.Z_PK, z.ZPARENTFOLDER 
+from ZGENERICALBUM z 
+where z.ztitle = 'High Aesthetic Photos'
+
+-- all assets in High Aestetic Photos album
+select za.ZOVERALLAESTHETICSCORE, zaa.ZORIGINALFILESIZE, zaa.ZORIGINALFILENAME, za.ZDATECREATED,
+datetime(coalesce(cast(strftime('%s',replace(substr(zaa.zexiftimestampstring,-19,10),':','-') || ' ' || substr(zaa.zexiftimestampstring,-8,8)) as int), 
+(za.zdatecreated + 978303599.796)), 'unixepoch', 'localtime') as dateCreated
+from zasset za
+join ZADDITIONALASSETATTRIBUTES zaa on zaa.ZASSET = za.Z_PK
+where za.z_pk in 
+    (
+    select z_3assets 
+    from z_30assets 
+    where Z_30albums in 
+    (72337))
+    and ztrashedstate = 0
+order by za.ZDATECREATED
+
+select datetime((a.zaddeddate + 978303599.796), 'unixepoch', 'localtime') as dateAdded,
+substr(datetime((a.zaddeddate + 978303599.796), 'unixepoch', 'localtime'),0,11) as dateAddedT, * 
+from zasset a
+order by a.zaddeddate desc
+

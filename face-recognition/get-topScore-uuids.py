@@ -15,7 +15,9 @@ threshold = 0.7625
 # Query photos above the threshold
 query = """
 SELECT zuuid FROM ZASSET 
+left join zextendedattributes ea on ea.zasset = ZASSET.z_pk
 WHERE ZOVERALLAESTHETICSCORE > ? 
+and ea.zcameramodel not in ('NIKON D90')
 and ztrashedstate = 0
 ORDER BY ZOVERALLAESTHETICSCORE DESC;
 """
